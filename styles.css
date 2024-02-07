@@ -40,7 +40,6 @@ h2 {
   margin: 0px 0px 64px;
   padding-bottom: 4px;
   border-bottom: 4px solid hsl(230deg, 100%, 69%);
-  /* color: hsl(333deg, 100%, 52%); */
 }
 
 h3 {
@@ -111,19 +110,17 @@ nav {
   transform: translateX(4px);
 }
 
-/* Hover effect to change text color for both h3 and default links */
 .h3-link a:hover,
 .link-right-icon:hover {
   color: hsl(230deg, 100%, 69%);
 }
 
 .flexbox-link {
-  display: inline-flex; /* Makes the link only as wide as its content */
+  display: inline-flex;
   align-items: center;
-  gap: 8px; /* Adjust the gap between icon and text as needed */
-  text-decoration: none; /* Removes the underline from the link */
-  color: #ffffff; /* Your desired text color */
-  /* Add other styles such as padding, font-size, etc., as needed */
+  gap: 8px;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 .flexbox-link:hover {
@@ -131,17 +128,16 @@ nav {
 }
 
 .flexbox-link:last-child {
-  margin-bottom: 0; /* Removes the bottom margin from the last link */
+  margin-bottom: 0;
 }
 
 .material-icons {
-  font-family: "Material Icons"; /* Specify the icon font */
-  transition: transform 0.3s ease; /* Smooth transition for the icon movement */
+  font-family: "Material Icons";
+  transition: transform 0.3s ease;
 }
 
-/* Hover effect */
 .flexbox-link:hover .material-icons {
-  transform: translateX(6px); /* Moves the icon closer to the text */
+  transform: translateX(6px);
 }
 
 .caption {
