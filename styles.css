@@ -1,0 +1,201 @@
+:root {
+  /* colours */
+  --colour-bg: hsl(210deg, 30%, 8%);
+  --colour-text-heading: #e9f2ff;
+  --colour-text: #ffffff;
+  --colour-text-secondary: #ffffff;
+  --colour-link: hsl(230deg, 100%, 69%);
+  --colour-link-hover: #d6e2fb;
+  --colour-icon: #c5c7c5;
+  /* fonts */
+  --font-display: 5.5rem;
+  --font-h1: 36px;
+  --font-h2: 28px;
+  --font-h3: 20px;
+  --font-body: 16px;
+  --font-caption: 16px;
+  --font-button: 1rem;
+  --font-lh-large: 200%;
+  --font-lh-small: 130%;
+  --font-weight-Sm: 200;
+  --font-weight-Md: 400;
+  --font-weight-Lg: 600;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  background-color: var(--colour-bg);
+  color: var(--colour-text-secondary);
+}
+
+h1 {
+  font-size: var(--font-h1);
+}
+h2 {
+  font-size: var(--font-h2);
+  margin: 0px 0px 64px;
+  padding-bottom: 4px;
+  border-bottom: 4px solid hsl(230deg, 100%, 69%);
+  /* color: hsl(333deg, 100%, 52%); */
+}
+
+h3 {
+  font-size: var(--font-h3);
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+p {
+  color: var(--colour-text-secondary);
+  display: block;
+  margin-bottom: 34px;
+  font-size: var(--font-body);
+  line-height: var(--font-lh-large);
+}
+
+a {
+  color: var(--colour-link);
+  font-size: var(--font-body);
+  text-decoration: none;
+  position: relative;
+  padding-right: 24px;
+}
+
+nav {
+  display: block;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.link-wrapper {
+  margin-bottom: 10px;
+}
+
+.h3-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--colour-text-heading);
+  font-size: var(--font-h3);
+}
+
+.link-right-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--colour-text);
+  transition: transform 0.3s ease;
+  padding-bottom: 8px;
+}
+
+.link-right-icon .material-icons {
+  font-family: "Material Icons";
+  transition: transform 0.3s ease;
+}
+
+.link-right-icon:hover .material-icons {
+  transform: translateX(4px);
+}
+
+/* Hover effect to change text color for both h3 and default links */
+.h3-link a:hover,
+.link-right-icon:hover {
+  color: hsl(230deg, 100%, 69%);
+}
+
+.flexbox-link {
+  display: inline-flex; /* Makes the link only as wide as its content */
+  align-items: center;
+  gap: 8px; /* Adjust the gap between icon and text as needed */
+  text-decoration: none; /* Removes the underline from the link */
+  color: #ffffff; /* Your desired text color */
+  /* Add other styles such as padding, font-size, etc., as needed */
+}
+
+.flexbox-link:hover {
+  color: hsl(230deg, 100%, 69%);
+}
+
+.flexbox-link:last-child {
+  margin-bottom: 0; /* Removes the bottom margin from the last link */
+}
+
+.material-icons {
+  font-family: "Material Icons"; /* Specify the icon font */
+  transition: transform 0.3s ease; /* Smooth transition for the icon movement */
+}
+
+/* Hover effect */
+.flexbox-link:hover .material-icons {
+  transform: translateX(6px); /* Moves the icon closer to the text */
+}
+
+.caption {
+  font-style: italic;
+  font-size: var(--font-caption);
+  color: #aec6f6;
+  margin: 0%;
+}
+
+.content {
+  margin-inline: 80px;
+  margin-bottom: 120px;
+  display: block;
+}
+
+.portrait img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+  color: rgb(243, 82, 255);
+  margin-bottom: 50px;
+}
+
+.portrait img {
+  transition-property: transform, filter;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.portrait:hover img {
+  filter: hue-rotate(170deg);
+}
+
+.portrait:hover {
+  color: rgb(106, 255, 201);
+}
+
+.layout {
+  margin: 72px auto 120px;
+  max-width: 1000px;
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-inline: 40px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    margin-inline: 20px;
+    margin-bottom: 10px;
+  }
+}
