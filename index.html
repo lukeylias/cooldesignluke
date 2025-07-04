@@ -14,10 +14,19 @@
       href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.4.2/uicons-brands/css/uicons-brands.css"
+    />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="assets/favicon.svg" type="image/x-icon" />
   </head>
   <body>
+    <div class="custom-cursor"></div>
     <main class="home-page">
       <div class="layout">
         <nav class="main-nav">
@@ -25,10 +34,24 @@
             <a href="#">Luke Ylias</a>
           </div>
           <div class="nav-right">
-            <a href="#">Contact</a>
+            <a
+              href="https://github.com/lukeylias"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              ><i class="fi fi-brands-github"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/lukeylias/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+              ><i class="fi fi-brands-linkedin"></i
+            ></a>
           </div>
         </nav>
         <section class="hero-statement">
+          <canvas id="drawing-canvas"></canvas>
           <h1 class="hero-text">
             Senior Product Designer exploring the joys of creating in both
             <br />
@@ -38,12 +61,18 @@
         </section>
         <section class="landing-content">
           <div class="content-block">
-            <h2>I love building software for people.</h2>
+            <h2>I like building things that help people.</h2>
             <p>
-              Every day I'm driven to solve problems for others and create
-              delightful user experiences.
+              I’ve always enjoyed building things — whether it’s designing
+              interfaces, writing code, or setting up experiments to see what
+              works. That mix of creativity and logic is what keeps me
+              interested.
             </p>
-            <p>Today, I work at Figma on unannounced AI projects.</p>
+            <p>
+              Over time, I’ve gravitated toward areas like accessibility,
+              front-end prototyping, and experimentation. Letting me make
+              tangible, meaningful improvements to how things work.
+            </p>
             <ul class="experience-list">
               <li class="experience-list-item">
                 <span class="experience-name">nib</span>
@@ -63,14 +92,24 @@
               a decade.
             </p>
           </div>
+          <hr class="divider" />
           <div class="content-block">
-            <h2>I believe tools should be playful.</h2>
+            <h2>I care about the people behind the work.</h2>
             <p>
-              I love building expressive tools for others and removing barriers
-              to exploring new ideas.
+              I try to be the kind of teammate who pays attention — to how
+              others work, what they need, and where I can be useful. Everyone
+              brings something different, and I think it’s worth taking the time
+              to understand that.
             </p>
-            <p>Recently I've launched a few new tools:</p>
+            <p>
+              I enjoy mentoring designers and developers, and I try to support
+              people whether they’re in my immediate team or not. That might
+              mean sharing what I know, helping someone think through a problem,
+              or just being someone they can rely on. And when the work’s going
+              well, it should be enjoyable too.
+            </p>
           </div>
+          <hr class="divider" />
         </section>
       </div>
     </main>
