@@ -3,47 +3,137 @@ document.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("drawing-canvas");
   const ctx = canvas.getContext("2d");
   const customCursor = document.querySelector(".custom-cursor");
-  let isDrawing = false;
-  let lastX = 0;
-  let lastY = 0;
+
+  const soundAssets = [
+    "sounds/pop1.wav",
+    "sounds/pop2.wav",
+    "sounds/pop3.wav",
+    "sounds/pop4.wav",
+  ];
+
+  const stampAssets = [
+    "assets/Circle_01.svg",
+    "assets/Circle_02.svg",
+    "assets/Cone_01.svg",
+    "assets/Cube_01.svg",
+    "assets/HexagonalPrism_01.svg",
+    "assets/PentagonalPrism_01.svg",
+    "assets/Pyramid_01.svg",
+    "assets/RectangularPrism_01.svg",
+    "assets/Sphere_2Axis.svg",
+    "assets/Sphere_3Axis.svg",
+    "assets/Square_01.svg",
+    "assets/Trapezpoid_01.svg",
+    "assets/Triangle_01.svg",
+    "assets/Triangle_02.svg",
+    "assets/Triangular.svg",
+  ];
+
+  const stampImage = new Image();
+  let lastStampSrc = "";
+  let currentStampSize = 100;
+  let isImageReady = false;
+
+  // --- Cursor Animation Variables ---
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  const easing = 0.08; // Adjust for more/less drag
+  let animationFrameId = null;
 
   // Set canvas dimensions to match the hero-statement section
   canvas.width = heroStatement.offsetWidth;
   canvas.height = heroStatement.offsetHeight;
-  ctx.lineWidth = 5; // Make the line thicker
-  ctx.lineJoin = "round";
-  ctx.lineCap = "round";
 
+  // Improve image quality
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+
+  // --- Animation Loop ---
+  function animateCursor() {
+    const dx = mouseX - cursorX;
+    const dy = mouseY - cursorY;
+
+    cursorX += dx * easing;
+    cursorY += dy * easing;
+
+    const halfSize = currentStampSize / 2;
+    customCursor.style.transform = `translate3d(${cursorX - halfSize}px, ${
+      cursorY - halfSize
+    }px, 0)`;
+
+    animationFrameId = requestAnimationFrame(animateCursor);
+  }
+
+  // --- Custom Cursor Logic ---
   heroStatement.addEventListener("mouseenter", (e) => {
-    isDrawing = true;
     customCursor.style.display = "block";
-    ctx.strokeStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    [lastX, lastY] = [
-      e.clientX - heroStatement.getBoundingClientRect().left,
-      e.clientY - heroStatement.getBoundingClientRect().top + 48,
-    ];
-    ctx.beginPath();
+    isImageReady = false;
+
+    // Initialize cursor position to avoid jump
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+
+    let newStampSrc;
+    do {
+      newStampSrc = stampAssets[Math.floor(Math.random() * stampAssets.length)];
+    } while (newStampSrc === lastStampSrc);
+
+    lastStampSrc = newStampSrc;
+
+    // Load SVG as a data URL to maintain quality
+    fetch(newStampSrc)
+      .then((response) => response.text())
+      .then((svgText) => {
+        const encodedSvg = window.btoa(svgText);
+        stampImage.src = `data:image/svg+xml;base64,${encodedSvg}`;
+        customCursor.style.backgroundImage = `url('${stampImage.src}')`;
+        stampImage.onload = () => {
+          isImageReady = true;
+        };
+      });
+
+    // Randomize the size
+    currentStampSize = Math.floor(Math.random() * 50) + 75; // e.g., 75px to 125px
+    customCursor.style.width = `${currentStampSize}px`;
+    customCursor.style.height = `${currentStampSize}px`;
+
+    // Start animation
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+    animateCursor();
   });
 
   heroStatement.addEventListener("mouseleave", () => {
-    isDrawing = false;
     customCursor.style.display = "none";
-    ctx.closePath();
+    // Stop animation
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
   });
 
   heroStatement.addEventListener("mousemove", (e) => {
-    customCursor.style.left = e.clientX + "px";
-    customCursor.style.top = e.clientY + "px";
-    if (isDrawing) {
-      const currentX = e.clientX - heroStatement.getBoundingClientRect().left;
-      const currentY =
-        e.clientY - heroStatement.getBoundingClientRect().top + 48; // Offset by 48px for bottom-left
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
 
-      ctx.moveTo(lastX, lastY);
-      ctx.lineTo(currentX, currentY);
-      ctx.stroke();
+  // --- Stamping Logic ---
+  heroStatement.addEventListener("click", (e) => {
+    if (!isImageReady) return;
 
-      [lastX, lastY] = [currentX, currentY];
-    }
+    const halfSize = currentStampSize / 2;
+    const x = e.clientX - heroStatement.getBoundingClientRect().left - halfSize; // Adjust for centering
+    const y = e.clientY - heroStatement.getBoundingClientRect().top - halfSize; // Adjust for centering
+    ctx.drawImage(stampImage, x, y, currentStampSize, currentStampSize);
+
+    const randomSoundSrc =
+      soundAssets[Math.floor(Math.random() * soundAssets.length)];
+    const clickSound = new Audio(randomSoundSrc);
+    clickSound.play();
   });
 });

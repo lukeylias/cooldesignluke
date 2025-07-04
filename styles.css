@@ -72,15 +72,17 @@ main {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100px; /* Set width of the image */
+  height: 100px; /* Set height of the image */
   pointer-events: none;
   z-index: 9999;
+  background-image: url("assets/stamp-face.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .custom-cursor::after {
-  font-family: "Material Symbols Rounded";
-  content: "stylus";
-  font-size: 48px; /* Doubled from 24px */
-  color: black;
+  content: ""; /* Remove the icon content */
 }
 
 .hero-statement h1.hero-text .highlight-text {

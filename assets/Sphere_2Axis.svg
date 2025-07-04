@@ -1,0 +1,25 @@
+<svg width="195" height="186" viewBox="0 0 195 186" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_2_112)">
+<path d="M162.201 77.9776C162.201 119.527 128.519 153.209 86.9702 153.209C45.4212 153.209 11.7392 119.527 11.7392 77.9776C11.7392 36.4287 45.4212 2.74664 86.9702 2.74664C128.519 2.74664 162.201 36.4287 162.201 77.9776Z" fill="#FF5566"/>
+<path d="M162.201 79.4822C97.6027 101.951 34.6427 88.8443 11.2375 79.4822C11.9062 103.389 27.8886 151.604 86.4685 153.209C145.048 154.814 161.365 104.726 162.201 79.4822Z" fill="#FEDF46"/>
+<path d="M162.201 77.9776C162.201 86.8414 129.627 92.5223 86.9702 92.5223C44.3133 92.5223 11.7392 86.8414 11.7392 77.9776C11.7392 69.1139 44.3133 62.9314 86.9702 62.9314C129.627 62.9314 162.201 69.1139 162.201 77.9776Z" fill="#00B9FB"/>
+<path d="M162.201 76.9745C162.277 79.4822 160.605 81.2409 156.675 83.2162C152.746 85.1915 146.991 86.9797 139.751 88.4752C132.511 89.9707 123.932 91.1432 114.521 91.9234C105.11 92.7037 95.0581 93.0758 84.9581 93.018C74.8581 92.9601 64.9151 92.4734 55.7162 91.5866C46.5173 90.6997 38.249 89.4307 31.3996 87.8545C24.5502 86.2783 19.2585 84.4269 15.8369 82.4095C12.4154 80.3921 11.7392 78.9807 11.7392 76.9745" stroke="#202020" stroke-width="4" stroke-linecap="round"/>
+<path d="M35.813 66.9437C44.3392 65.4391 51.8623 64.436 61.3916 63.9345" stroke="#202020" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M23.2746 69.953C16.5023 71.9936 11.7392 73.9653 11.7392 76.9746" stroke="#202020" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M150.164 69.953C156.937 71.9936 162.201 73.9653 162.201 76.9746" stroke="#202020" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M73.9302 62.9314C79.9487 62.9314 93.1894 62.9314 100.01 62.9314" stroke="#202020" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M112.549 63.9345C122.579 64.436 132.61 65.9407 138.127 66.9437" stroke="#202020" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M162.201 77.9776C162.201 119.527 128.519 153.209 86.9702 153.209C45.4212 153.209 11.7392 119.527 11.7392 77.9776C11.7392 36.4287 45.4212 2.74664 86.9702 2.74664C128.519 2.74664 162.201 36.4287 162.201 77.9776Z" stroke="#202020" stroke-width="4"/>
+</g>
+<defs>
+<filter id="filter0_d_2_112" x="0.203613" y="0.746643" width="194" height="184.462" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="30" dy="30"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2_112"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_112" result="shape"/>
+</filter>
+</defs>
+</svg>
