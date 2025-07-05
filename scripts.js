@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const heroStatement = document.querySelector(".hero-statement");
   const canvas = document.getElementById("drawing-canvas");
-  const ctx = canvas.getContext("2d");
   const customCursor = document.querySelector(".custom-cursor");
 
   const soundAssets = [
@@ -12,21 +11,16 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const stampAssets = [
-    "assets/Circle_01.svg",
-    "assets/Circle_02.svg",
-    "assets/Cone_01.svg",
-    "assets/Cube_01.svg",
-    "assets/HexagonalPrism_01.svg",
-    "assets/PentagonalPrism_01.svg",
-    "assets/Pyramid_01.svg",
-    "assets/RectangularPrism_01.svg",
-    "assets/Sphere_2Axis.svg",
-    "assets/Sphere_3Axis.svg",
-    "assets/Square_01.svg",
-    "assets/Trapezpoid_01.svg",
-    "assets/Triangle_01.svg",
-    "assets/Triangle_02.svg",
-    "assets/Triangular.svg",
+    "assets/Confused.svg",
+    "assets/Cool.svg",
+    "assets/Cry.svg",
+    "assets/Hello.svg",
+    "assets/Sad.svg",
+    "assets/Shocked.svg",
+    "assets/Thumbs-Down.svg",
+    "assets/Thumbs-Up.svg",
+    "assets/Unimpressed.svg",
+    "assets/Wow.svg",
   ];
 
   const stampImage = new Image();
@@ -42,9 +36,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const easing = 0.08; // Adjust for more/less drag
   let animationFrameId = null;
 
-  // Set canvas dimensions to match the hero-statement section
-  canvas.width = heroStatement.offsetWidth;
-  canvas.height = heroStatement.offsetHeight;
+  // Set canvas dimensions for high-DPI displays
+  const dpr = window.devicePixelRatio || 1;
+  const rect = heroStatement.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  canvas.style.width = `${rect.width}px`;
+  canvas.style.height = `${rect.height}px`;
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
 
   // Improve image quality
   ctx.imageSmoothingEnabled = true;
@@ -85,16 +85,11 @@ document.addEventListener("DOMContentLoaded", function () {
     lastStampSrc = newStampSrc;
 
     // Load SVG as a data URL to maintain quality
-    fetch(newStampSrc)
-      .then((response) => response.text())
-      .then((svgText) => {
-        const encodedSvg = window.btoa(svgText);
-        stampImage.src = `data:image/svg+xml;base64,${encodedSvg}`;
-        customCursor.style.backgroundImage = `url('${stampImage.src}')`;
-        stampImage.onload = () => {
-          isImageReady = true;
-        };
-      });
+    stampImage.src = newStampSrc;
+    customCursor.style.backgroundImage = `url('${newStampSrc}')`;
+    stampImage.onload = () => {
+      isImageReady = true;
+    };
 
     // Randomize the size
     currentStampSize = Math.floor(Math.random() * 50) + 75; // e.g., 75px to 125px
@@ -126,10 +121,21 @@ document.addEventListener("DOMContentLoaded", function () {
   heroStatement.addEventListener("click", (e) => {
     if (!isImageReady) return;
 
-    const halfSize = currentStampSize / 2;
-    const x = e.clientX - heroStatement.getBoundingClientRect().left - halfSize; // Adjust for centering
-    const y = e.clientY - heroStatement.getBoundingClientRect().top - halfSize; // Adjust for centering
-    ctx.drawImage(stampImage, x, y, currentStampSize, currentStampSize);
+    const aspectRatio = stampImage.naturalWidth / stampImage.naturalHeight;
+
+    // Add more variance to the size of the rendered sticker
+    const minHeight = 80;
+    const maxHeight = 500;
+    const newHeight = Math.random() * (maxHeight - minHeight) + minHeight;
+    const newWidth = newHeight * aspectRatio;
+
+    const x =
+      e.clientX - heroStatement.getBoundingClientRect().left - newWidth / 2;
+    const y =
+      e.clientY - heroStatement.getBoundingClientRect().top - newHeight / 2;
+
+    // Use calculated width and height to draw the image
+    ctx.drawImage(stampImage, x, y, newWidth, newHeight);
 
     const randomSoundSrc =
       soundAssets[Math.floor(Math.random() * soundAssets.length)];
